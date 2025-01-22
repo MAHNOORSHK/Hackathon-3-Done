@@ -1,4 +1,4 @@
-export default {
+export const Chefs =  {
     name: 'chef',
     type: 'document',
     title: 'Chef',

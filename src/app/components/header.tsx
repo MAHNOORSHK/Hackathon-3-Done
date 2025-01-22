@@ -36,9 +36,6 @@ const Header = () => {
           <Link href="/about" className="hover:text-[#FF9F0D]">
             About
           </Link>
-          <Link href="/blog" className="hover:text-[#FF9F0D]">
-            Blog
-          </Link>
           <Link href="/signin" className="hover:text-[#FF9F0D]">
             Contact
           </Link>
@@ -122,15 +119,6 @@ const Header = () => {
               onClick={() => setMenuOpen(false)}
             >
               Shop
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/blog"
-              className="text-[16px] leading-6 hover:text-[#FF9F0D] transition-colors"
-              onClick={() => setMenuOpen(false)}
-            >
-              Blog
             </Link>
           </li>
           <li>
