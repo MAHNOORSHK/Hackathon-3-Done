@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { FcGoogle } from "react-icons/fc";
-import { ImAppleinc } from "react-icons/im";
 import Navbar from "../components/secondheader";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 export default function SignInPage() {
   return (
@@ -18,7 +17,7 @@ export default function SignInPage() {
               Home
             </Link>
             <span className='text-white'>/</span>
-            <Link href="/menu" className='text-[#FF9F0D]'>
+            <Link href="/" className='text-[#FF9F0D]'>
               SignIn
             </Link>
           </div>
@@ -28,7 +27,12 @@ export default function SignInPage() {
     <div className="min-h-screen bg-white">
       {/* Signin Form */}
       <section className="py-16">
-        <div className="container mx-auto max-w-md bg-white shadow-lg rounded-md p-8">
+        <div className="container mx-auto max-w-md bg-white shadow-lg rounded-md p-8 ">
+        <SignedIn><div className="text-center"> <UserButton/>
+         <h1 className="text-3xl font-bold">Welcome to Food Tuck!!</h1>
+         </div>
+         </SignedIn>
+         <SignedOut>
           <h3 className="text-2xl font-bold mb-6 text-center">Sign In</h3>
           <form>
             <div className="mb-4">
@@ -55,34 +59,18 @@ export default function SignInPage() {
                 placeholder="Enter your password"
               />
             </div>
+            </form>
             <div className="flex items-center mb-4">
               <input type="checkbox" className="mr-2" />
               <span>Remember me?</span>
             </div>
-            <button
-              type="submit"
-              className="w-full bg-[#FF9F0D] hover:bg-[#FF9F0D] text-white font-bold py-2 rounded"
+            <div
+              className="w-full bg-[#FF9F0D] hover:bg-[#FF9F0D] text-white font-bold py-2 rounded text-center"
             >
-              Sign In
-            </button>
-            <p className="text-center mt-4">
-              <Link href="/forgot-password" className="text-[#FF9F0D]">Forgot password?</Link>
-            </p>
-            <p className="text-center mt-4">Need an account? 
-              <Link href="/signup" className="text-[#FF9F0D]"> SIGN UP</Link>
-            </p>
-          </form>
-          <div className="text-center mt-8">
-            <p>or</p>
-            <button className="w-full bg-gray-100 border text-black py-2 rounded mt-2 flex items-center justify-center">
-            <FcGoogle className="h-6 mr-2" />
-              Sign in with Google
-            </button>
-            <button className="w-full bg-gray-100 border text-black py-2 rounded mt-2 flex items-center justify-center">
-              <ImAppleinc className="h-6 mr-2" />
-              Sign in with Apple
-            </button>
-          </div>
+              <SignInButton mode="modal"/>
+            </div>
+           
+          </SignedOut>
         </div>
       </section>
 

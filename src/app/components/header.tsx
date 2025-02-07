@@ -6,6 +6,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store/store";
+import { SignedIn, UserButton } from "@clerk/nextjs";
+import { FaUser } from "react-icons/fa";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -36,13 +38,14 @@ const Header = () => {
           <Link href="/about" className="hover:text-[#FF9F0D]">
             About
           </Link>
-          <Link href="/signin" className="hover:text-[#FF9F0D]">
+          <Link href="/signup" className="hover:text-[#FF9F0D]">
             Contact
           </Link>
         </ul>
 
         {/* Search Bar & Cart */}
         <div className="flex items-center gap-[15px]">
+
           <div className="flex items-center gap-[10px] px-[15px] py-[5px] border border-[#FF9F0D] rounded-2xl">
             <input
               type="search"
@@ -59,32 +62,51 @@ const Header = () => {
               {cartItemCount}
             </span>
           </div>
+          <div className="text-white">
+            <Link href="/signin">
+              <FaUser />
+            </Link>
+          </div>
+          <div className="text-white">
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </div>
         </div>
       </div>
 
       {/* Mobile Navigation */}
-      <div className="lg:hidden flex justify-between items-center px-[30px]">
+      <div className="lg:hidden flex justify-between items-center px-[5px]">
         {/* Hamburger Menu */}
         <GiHamburgerMenu
           className="text-white text-[34px] cursor-pointer"
           onClick={() => setMenuOpen(true)}
         />
         {/* Cart Icon */}
-        <div className="relative">
+        <div className="relative flex gap-4">
           <Link href="/shopcart">
             <HiOutlineShoppingBag className="text-white text-[24px] cursor-pointer" />
           </Link>
-          <span className="absolute top-[-5px] right-[-10px] bg-[#FF9F0D] text-white text-[12px] font-bold rounded-full px-[6px] py-[2px]">
+          <div className="text-white text-center align-middle justify-center">
+            <Link href="/signin">
+              <FaUser />
+            </Link>
+          </div>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+          <span className="absolute top-[-5px] right-[75px] bg-[#FF9F0D] text-white text-[12px] font-bold rounded-full px-[6px] py-[2px]">
             {cartItemCount}
+
           </span>
+
         </div>
       </div>
 
       {/* Drawer Menu */}
       <div
-        className={`fixed top-0 left-0 h-full w-[250px] bg-[#0D0D0D] shadow-lg z-50 transform transition-transform duration-300 ${
-          menuOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed top-0 left-0 h-full w-[250px] bg-[#0D0D0D] shadow-lg z-50 transform transition-transform duration-300 ${menuOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         <div className="flex justify-between items-center p-4">
           <Link

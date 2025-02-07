@@ -8,10 +8,10 @@ import blogauthor from "@/app/images/blogauthor.png";
 import { createClient } from "next-sanity";
 
 const client = createClient({
-  projectId: "cm2r6qk4", // Replace with your Sanity project ID
-  dataset: "production", // Replace with your dataset name
-  apiVersion: "2023-01-01", // Use a recent date for the API version
-  useCdn: true, // Set to false for fresh data
+  projectId: "cm2r6qk4", 
+  dataset: "production", 
+  apiVersion: "2023-01-01", 
+  useCdn: true, 
 });
 
 interface Food {

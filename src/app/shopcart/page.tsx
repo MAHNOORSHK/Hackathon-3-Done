@@ -4,6 +4,7 @@ import { removeFromCart, updateItemQuantity } from "@/app/store/features/cart";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/app/components/secondheader";
+import AuthGuard from "../components/AuthGuard";
 
 interface CartItem {
   _id: string;
@@ -37,32 +38,33 @@ const CartPage = () => {
 
   if (cartItems.length === 0) {
     return (
+
       <>
-    <Navbar/>
-    <section className="w-full signup-bg-image py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center">
-            <h1 className="text-xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-white font-bold text-center mb-4 sm:mb-6">
-              Shopping Cart
-            </h1>
-            <div className="text-base sm:text-lg md:text-xl flex gap-2 text-center justify-center">
-              <Link
-                href="/"
-                className="text-white hover:text-[#FF9F0D] transition-colors duration-300"
-              >
-                Home
-              </Link>
-              <span className="text-white">/</span>
-              <Link href="/shopcart" className="text-[#FF9F0D]">
+        <Navbar />
+        <section className="w-full signup-bg-image py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col items-center">
+              <h1 className="text-xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-white font-bold text-center mb-4 sm:mb-6">
                 Shopping Cart
-              </Link>
+              </h1>
+              <div className="text-base sm:text-lg md:text-xl flex gap-2 text-center justify-center">
+                <Link
+                  href="/"
+                  className="text-white hover:text-[#FF9F0D] transition-colors duration-300"
+                >
+                  Home
+                </Link>
+                <span className="text-white">/</span>
+                <Link href="/shopcart" className="text-[#FF9F0D]">
+                  Shopping Cart
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    <div className="text-center py-16">Your cart is empty!</div>
-    </>
-    )
+        </section>
+        <div className="text-center py-16">Your cart is empty!</div>
+      </>
+    );
   }
 
   return (
@@ -91,6 +93,8 @@ const CartPage = () => {
           </div>
         </div>
       </section>
+
+      <AuthGuard>
 
       {/* Main Content */}
       <div className="bg-gray-50 font-sans">
@@ -167,17 +171,24 @@ const CartPage = () => {
                   <span>Total</span>
                   <span>${totalAmount.toFixed(2)}</span>
                 </div>
-                <button
-                  className="w-full bg-[#FF9F0D] text-white mt-4 py-3 rounded font-semibold hover:bg-orange-600"
-                  aria-label="Proceed to Checkout"
+                <Link
+                  href="/checkout"
+                  passHref
                 >
-                  <Link href="/checkout">Proceed to Checkout</Link>
-                </button>
+                  <button
+                    className="w-full bg-[#FF9F0D] text-white mt-4 py-3 rounded font-semibold hover:bg-orange-600"
+                    aria-label="Proceed to Checkout"
+                  >
+                    Proceed to Checkout
+                  </button>
+                </Link>
+
               </div>
             </div>
           </div>
         </main>
       </div>
+      </AuthGuard>
     </>
   );
 };

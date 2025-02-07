@@ -4,10 +4,11 @@ import Link from "next/link";
 import { IoClose } from "react-icons/io5";
 import { LuMenu } from "react-icons/lu";
 import { IoIosSearch } from "react-icons/io";
-import { LuUserRound } from "react-icons/lu";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store/store";
+import { SignedIn,  UserButton } from "@clerk/clerk-react";
+import { FaUser } from "react-icons/fa";
 
 export default function Header() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -50,7 +51,7 @@ export default function Header() {
             <Link href="/about" className="text-[16px] leading-6 hover:text-[#FF9F0D] transition-colors">About</Link>
           </li>
           <li>
-            <Link href="/signin" className="text-[16px] leading-6 hover:text-[#FF9F0D] transition-colors">Contact</Link>
+            <Link href="/signup" className="text-[16px] leading-6 hover:text-[#FF9F0D] transition-colors">Contact</Link>
           </li>
         </ul>
 
@@ -58,9 +59,6 @@ export default function Header() {
         <div className="flex items-center gap-4">
           <Link href="/" className="hidden lg:block text-white hover:text-[#FF9F0D] transition-colors">
             <IoIosSearch size={24} />
-          </Link>
-          <Link href="/signup" className="text-white hover:text-[#FF9F0D] transition-colors">
-            <LuUserRound size={24} />
           </Link>
           <div className="relative">
             <Link href="/shopcart" className="text-white hover:text-[#FF9F0D] transition-colors">
@@ -70,6 +68,14 @@ export default function Header() {
               {cartItemCount}
             </span>
           </div>
+          <div className="text-white">
+            <Link href="/signin">
+        <FaUser/>
+        </Link>
+          </div>
+          <SignedIn>
+              <UserButton />
+            </SignedIn>
         </div>
       </nav>
 
